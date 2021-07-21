@@ -33,14 +33,15 @@ namespace AUthorsTableInputForm
         private void frmAuthors_Load(object sender, EventArgs e)
         {
             //connect to the books database
-            string fullfile = Path.GetFullPath("SQLBooksDB");
-            booksConnection = new SqlConnection("Data Source=.\\SQLEXPRESS01; AttachDbFilename=" + fullfile + ";Integrated Security=True; Connect Timeout=30; User Instance=True");
+            string fullfile = Path.GetFullPath("SQLBooksDB.mdf");
+            booksConnection = new SqlConnection("Data Source=.\\SQLEXPRESS;AttachDbFilename=" + fullfile + ";Integrated Security=True;Connect Timeout=30;User Instance=True");
+            booksConnection.Open();
 
             //This tested to see if the connection worked
             //MessageBox.Show("the connection was successfull");
 
             //establish command object
-            authorsCommand = new SqlCommand("SELECT * FROM Authors ORDER BY Author", booksConnection);
+            authorsCommand = new SqlCommand("Select * from Authors ORDER BY Author", booksConnection);
 
             ////connection object established
             //MessageBox.Show("The connection object established.");
